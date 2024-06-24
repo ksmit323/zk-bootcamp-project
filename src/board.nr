@@ -39,10 +39,11 @@ pub fn is_valid_path(path: [Square; 8], king: Square) {
         let modulo_dx = dx % 2;
         let modulo_dy = dy % 2;
 
-        // Assert that dx and dy are not equal to zero and within valid ranges
+        // Assert a move has been made
         assert(dx != 0);
         assert(dy != 0);
 
+        // Assert moves are valid Knight moves
         // if current move of x is 1 more than prev move of x
         if modulo_dx == 1 {
             // assert that current y should be 2 more or less than prev y
