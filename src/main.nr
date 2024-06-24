@@ -1,11 +1,9 @@
-fn main(x: Field, y: pub Field) {
-    assert(x != y);
-}
+mod dungeon;
+mod tests;
 
-#[test]
-fn test_main() {
-    main(1, 2);
-
-    // Uncomment to make test fail
-    // main(1, 1);
+fn main(
+    dagger: pub dungeon::Square,
+    path: [dungeon::Square; 8]
+) {
+    dungeon::is_valid_path(path, dagger);
 }
