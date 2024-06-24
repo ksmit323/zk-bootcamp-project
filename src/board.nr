@@ -6,7 +6,6 @@ struct Square {
 }
 
 pub fn is_valid_path(path: [Square; 8], king: Square) {
-    // Part 1
 
     // Should flag invalid start
     assert(path[0].x == 0);
