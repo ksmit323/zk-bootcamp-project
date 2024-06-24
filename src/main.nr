@@ -1,9 +1,9 @@
-mod dungeon;
+mod board;
 mod tests;
 
 fn main(
-    dagger: pub dungeon::Square,
-    path: [dungeon::Square; 8]
+    king: pub board::Square,
+    path: [board::Square; 8]
 ) {
-    dungeon::is_valid_path(path, dagger);
+    board::is_valid_path(path, king);
 }
