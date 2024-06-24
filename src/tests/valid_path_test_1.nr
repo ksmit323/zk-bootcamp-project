@@ -1,5 +1,5 @@
-use crate::dungeon::Square;
-use crate::dungeon::is_valid_path;
+use crate::board::Square;
+use crate::board::is_valid_path;
 
 #[test]
 fn test_valid_path() {
