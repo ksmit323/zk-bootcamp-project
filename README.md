@@ -119,7 +119,7 @@ nargo test
 ## How to Run the UI
 
 <p align="center">
-  <img src="asset/ui.png" alt="path" width="400"/>
+  <img src="asset/ui.png" alt="path" width="800"/>
 </p>
 
 ### Prerequisites
