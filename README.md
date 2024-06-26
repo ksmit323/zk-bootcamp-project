@@ -145,18 +145,18 @@ npm run dev
   <img src="asset/ui.png" alt="path" width="400"/>
 </p>
 
-1. Open the UI
+1. **Open the UI**
   - Once the development server is running, open your web browser and navigate to http://localhost:3000 (or the URL provided in the terminal).
 
-2. Generate Proof
+2. **Generate Proof**
   - Enter your path in the input box provided. The path should be in the format: 0,0 1,2 0,4 2,5 4,6 6,7 4,6 5,4
   - Click on the Generate Proof button.
 
-3. View Mission Logs and Proof
+3. **View Mission Logs and Proof**
   - The "Mission Logs" section will display logs related to the proof generation process.
   - The "Proof" section will show the generated proof.
 
-4. Verify Proof
+4. **Verify Proof**
   - After generating the proof, click on the Verify Proof button to verify the proof.
   - The logs will display the status of the verification process.
 
