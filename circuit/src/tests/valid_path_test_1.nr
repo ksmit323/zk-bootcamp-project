@@ -104,7 +104,7 @@ fn test_invalid_end() {
         Square { x: 5, y: 1 },
         Square { x: 3, y: 0 },
         Square { x: 1, y: 1 },
-        Square { x: 2, y: 3 } // Invalid end
+        Square { x: 2, y: 3 }// Invalid end
     ];
 
     is_valid_path(path, Square { x: 2, y: 0 });
