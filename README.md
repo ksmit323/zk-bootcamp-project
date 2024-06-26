@@ -35,30 +35,25 @@ The proof ensures:
 
 ## Project Structure
 ```bash
-├── Nargo.toml
-├── proofs
-│   └── zk_bootcamp_project.proof
-├── Prover.toml
-├── src
-│   ├── board.nr
-│   ├── main.nr
-│   ├── tests
-│   │   └── valid_path_test_1.nr
-│   └── tests.nr
-├── target
-│   ├── debug_zk_bootcamp_project.json
-│   └── zk_bootcamp_project.json
-└── Verifier.toml
+├── asset
+│   └── path.png
+├── circuit
+│   ├── Nargo.toml
+│   ├── proofs
+│   └── src
+├── frontend
+│   └── ...code for UI
+└── README.md
 ```
+
 - ```Nargo.toml```: Configuration file for the Noir project.
 - ```proofs/```: Directory containing generated proofs.
-- ```Prover.toml``` & ```Verifier.toml```: Configuration files for the prover and verifier.
 - ```src/```: Source code directory.
   - ```board.nr```: Contains the logic for validating the knight's path.
   - ```main.nr```: The main entry point of the program.
   - ```tests/```: Directory for test files.
   - ```tests.nr```: Contains test cases for the project.
-- ```target/```: Output directory for compiled files.
+- ```frontend```: Code for user interface
 
 ## Code Explanation
 
