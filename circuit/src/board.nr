@@ -7,15 +7,15 @@ struct Square {
 
 pub fn is_valid_path(path: [Square; 8], king: Square) {
 
-    // Should flag invalid start
+    // 1. Check that Knight starts at the beginning
     assert(path[0].x == 0);
     assert(path[0].y == 0);
 
-    // Should flag invalid end
+    // 2. Check that Knight ends at the king's position
     assert(path[7].x == king.x);
     assert(path[7].y == king.y);
 
-    // Should flag invalid move
+    // 3. Check that each move made was a valid Knight move
     for i in 1..8 {
 
         // Current move
