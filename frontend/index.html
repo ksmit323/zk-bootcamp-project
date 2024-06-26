@@ -1,16 +1,48 @@
 <!DOCTYPE html>
+<html lang="en">
 <head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ZK Bootcamp Project</title>
   <style>
+    body {
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 20px;
+    }
     .outer {
         display: flex;
         justify-content: space-between;
         width: 100%;
     }
     .inner {
-        width: 45%;
+        width: 48%;
         border: 1px solid black;
         padding: 10px;
         word-wrap: break-word;
+    }
+    .input-area {
+        margin-bottom: 20px;
+        width: 48%;
+        display: flex;
+        flex-direction: column;
+    }
+    #pathInput {
+        width: 100%;
+        padding: 10px;
+        font-size: 16px;
+        margin-bottom: 10px;
+    }
+    .button-group {
+        display: flex;
+        gap: 10px;
+    }
+    #submitPath, #verifyProof {
+        padding: 10px 20px;
+        font-size: 16px;
+    }
+    #verifyProof {
+        display: none;
     }
   </style>
 </head>
@@ -18,8 +50,11 @@
   <script type="module" src="/main.js"></script>
   <h1>ZK Bootcamp Project</h1>
   <div class="input-area">
-    <input id="pathInput" placeholder="Enter your guess" />
-    <button id="submitPath">Submit Path</button>
+    <input id="pathInput" placeholder="Enter your guess (e.g., 0,0 1,2 0,4 2,5 4,6 6,7 4,6 5,4)" />
+    <div class="button-group">
+      <button id="submitPath">Submit Path</button>
+      <button id="verifyProof" style="display: none;">Verify Proof</button>
+    </div>
   </div>
   <div class="outer">
     <div id="logs" class="inner"><h2>Logs</h2></div>

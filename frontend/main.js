@@ -1,3 +1,5 @@
+// example of user input: 0,0 1,2 0,4 2,5 4,6 6,7 4,6 5,4
+
 import { BarretenbergBackend } from "@noir-lang/backend_barretenberg";
 import { Noir } from "@noir-lang/noir_js";
 import circuit from "../circuit/target/zk_bootcamp_project.json";
@@ -14,50 +16,71 @@ const setup = async () => {
   ]);
 };
 
-document.getElementById('submitPath').addEventListener('click', async () => {
-  const backend = new BarretenbergBackend(circuit);
-  const noir = new Noir(circuit, backend);
+document.addEventListener('DOMContentLoaded', () => {
+  const submitButton = document.getElementById('submitPath');
+  const verifyButton = document.getElementById('verifyProof');
+  const proofContainer = document.getElementById('results');
+  const logsContainer = document.getElementById('logs');
+  let noir;
+  let generatedProof;
 
-  try {
+  submitButton.addEventListener('click', async () => {
+    const backend = new BarretenbergBackend(circuit);
+    noir = new Noir(circuit, backend);
 
-    // Retrieve and parse user's path input
-    const userInput = document.getElementById("pathInput").value;
-    console.log("User input:", userInput);
-    const path = parseUserInput(userInput);
-    console.log("Parsed path:", path);
+    clearProofBox(proofContainer);
+    clearProofBox(logsContainer);
+    verifyButton.style.display = 'none';
 
-    // Set up inputs for proof
-    const inputs = {
-      king: { x: 5, y: 4 },
-      path: path,
+    try {
+      const userInput = document.getElementById("pathInput").value;
+      console.log("User input:", userInput);
+      const path = parseUserInput(userInput);
+      console.log("Parsed path:", path);
+
+      const inputs = {
+        king: { x: 5, y: 4 },
+        path: path,
+      }
+
+      await setup();
+
+      display('logs', 'Generating proof... ⌛');
+      generatedProof = await noir.generateProof(inputs);
+      display('logs', 'Generating proof... ✅');
+      displayProof(proofContainer, generatedProof.proof);
+      console.log("Proof: ", generatedProof);
+
+      verifyButton.style.display = 'inline-block';
+    } catch (err) {
+      console.error(err);
+      display('logs', 'Oh 💔 Wrong path');
+    }
+  });
+
+  verifyButton.addEventListener('click', async () => {
+    if (!noir || !generatedProof) {
+      display('logs', 'Error: Proof not generated yet');
+      return;
     }
 
-    await setup(); // squeeze wasm inits here
-
-    // Generate and diplay proof
-    display('logs', 'Generating proof... ⌛');
-    const proof = await noir.generateProof(inputs);
-    display('logs', 'Generating proof... ✅');
-    display('results', proof.proof);
-
-    // Generate verification
-    display('logs', 'Verifying proof... ⌛');
-    const verification = await noir.verifyProof(proof);
-    if (verification) {
-      display('logs', 'Verifying proof... ✅');
-    } else {
-      display('logs', "Unable to verify proof ❌");
+    try {
+      display('logs', 'Verifying proof... ⌛');
+      const verification = await noir.verifyProof(generatedProof);
+      if (verification) {
+        display('logs', 'Verifying proof... ✅');
+      } else {
+        display('logs', "Unable to verify proof ❌");
+      }
+    } catch (err) {
+      console.error(err);
+      display('logs', 'Error during proof verification');
     }
-
-  } catch (err) {
-    console.error(err);
-    display('logs', 'Oh 💔 Wrong path');
-  }
+  });
 });
 
 function parseUserInput(input) {
   try {
-    // Split the input into individual coordinate pairs
     const coordinates = input.trim().split(/\s+/);
 
     if (coordinates.length !== 8) {
@@ -88,4 +111,16 @@ function display(container, msg) {
   const p = document.createElement('p');
   p.textContent = msg;
   c.appendChild(p);
+}
+
+function clearProofBox(container) {
+  while (container.childNodes.length > 1) {
+    container.removeChild(container.lastChild);
+  }
+}
+
+function displayProof(container, proof) {
+  const proofElement = document.createElement('p');
+  proofElement.textContent = proof;
+  container.appendChild(proofElement);
 }
