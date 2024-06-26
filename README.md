@@ -118,6 +118,10 @@ nargo test
 
 ## How to Run the UI
 
+<p align="center">
+  <img src="asset/ui.png" alt="path" width="400"/>
+</p>
+
 ### Prerequisites
 Before you begin, ensure you have the following installed:
 - [Node.js](https://nodejs.org/) (which includes npm)
@@ -140,10 +144,6 @@ npm run dev
 ```
 
 ### Using the UI
-
-<p align="center">
-  <img src="asset/ui.png" alt="path" width="400"/>
-</p>
 
 1. **Open the UI**
   - Once the development server is running, open your web browser and navigate to http://localhost:3000 (or the URL provided in the terminal).
