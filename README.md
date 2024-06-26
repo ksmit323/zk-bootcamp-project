@@ -36,7 +36,7 @@ The proof ensures:
 ## Project Structure
 ```
 ├── asset
-│   └── path.png
+│   └── ...images for README.md
 ├── circuit
 │   ├── Nargo.toml
 │   ├── proofs
