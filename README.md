@@ -57,7 +57,7 @@ The proof ensures:
 
 ## Code Explanation
 
-### main.rs
+### main.nr
 ```rust
 mod board;
 mod tests;
