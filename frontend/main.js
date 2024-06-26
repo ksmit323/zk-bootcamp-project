@@ -1,4 +1,4 @@
-import { BarretenbergBackend, BarretenbergVerifier as Verifier } from "@noir-lang/backend_barretenberg";
+import { BarretenbergBackend } from "@noir-lang/backend_barretenberg";
 import { Noir } from "@noir-lang/noir_js";
 import circuit from "../circuit/target/zk_bootcamp_project.json";
 
@@ -14,35 +14,31 @@ const setup = async () => {
   ]);
 };
 
-document.addEventListener("DOMContentLoaded", async () => {
+document.getElementById('submitPath').addEventListener('click', async () => {
   const backend = new BarretenbergBackend(circuit);
   const noir = new Noir(circuit, backend);
 
   try {
 
+    // Retrieve and parse user's path input
+    const userInput = document.getElementById("pathInput").value;
+    console.log("User input:", userInput);
+    const path = parseUserInput(userInput);
+    console.log("Parsed path:", path);
+
     // Set up inputs for proof
     const inputs = {
       king: { x: 5, y: 4 },
-      path: [
-        { x: 0, y: 0},
-        { x: 1, y: 2},
-        { x: 0, y: 4},
-        { x: 2, y: 5},
-        { x: 4, y: 6},
-        { x: 6, y: 7},
-        { x: 4, y: 6},
-        { x: 5, y: 4},
-      ],
+      path: path,
     }
 
-    await setup(); // let's squeeze our wasm inits here
+    await setup(); // squeeze wasm inits here
 
     // Generate and diplay proof
     display('logs', 'Generating proof... ⌛');
     const proof = await noir.generateProof(inputs);
     display('logs', 'Generating proof... ✅');
     display('results', proof.proof);
-    console.log("Proof: ", proof);
 
     // Generate verification
     display('logs', 'Verifying proof... ⌛');
@@ -58,6 +54,34 @@ document.addEventListener("DOMContentLoaded", async () => {
     display('logs', 'Oh 💔 Wrong path');
   }
 });
+
+function parseUserInput(input) {
+  try {
+    // Split the input into individual coordinate pairs
+    const coordinates = input.trim().split(/\s+/);
+
+    if (coordinates.length !== 8) {
+      throw new Error("Invalid input: Please provide exactly 8 coordinate pairs.");
+    }
+
+    const path = coordinates.map(coord => {
+      const [x, y] = coord.split(',').map(num => {
+        const parsedNum = parseInt(num, 10);
+        if (isNaN(parsedNum)) {
+          throw new Error(`Invalid coordinate: ${coord}`);
+        }
+        return parsedNum;
+      });
+      return { x, y };
+    });
+
+    return path;
+  } catch (error) {
+    display('logs', error.message);
+    console.error("Error parsing input:", error);
+    throw error;
+  }
+}
 
 function display(container, msg) {
   const c = document.getElementById(container);
