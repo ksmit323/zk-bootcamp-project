@@ -114,9 +114,10 @@ function display(container, msg) {
 }
 
 function clearProofBox(container) {
-  while (container.childNodes.length > 1) {
-    container.removeChild(container.lastChild);
-  }
+  const paragraphs = container.querySelectorAll('p');
+  paragraphs.forEach((p) => {
+      container.removeChild(p);
+  });
 }
 
 function displayProof(container, proof) {
