@@ -8,13 +8,14 @@ The premise of this project is based on a chess scenario:
 - We have an 8x8 chess board.
 - A knight piece starts at the bottom left corner (position 0,0).
 - A king is placed at a known position on the board.
-- The prover (player) must move the knight to capture the king in exactly **8 moves**.
+- The prover (player) must move the knight to capture the king in exactly **8 moves**. 
+- **NOTE**: starting from (0,0) is considered one move.
 - The path taken by the knight is private information.
 
 The goal of this Zero Knowledge Proof is to prove that the prover knows a valid path for the knight to capture the king in exactly 8 moves, without revealing the actual path taken.
 
 <p align="center">
-  <img src="assets/chess.png" alt="Crypto Cat" width="400"/>
+  <img src="asset/path.png" alt="path" width="400"/>
 </p>
 
 ## Technical Details
