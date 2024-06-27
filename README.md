@@ -87,7 +87,7 @@ This file contains the core logic for validating the knight's path. Key points:
 
 The validation process uses assertions to enforce the rules, which is crucial for the zero-knowledge proof generation.
 
-## How to Run
+## How to Run the Circuit in Noir
 
 To install Noir, open a terminal on your machine, and write:
 ```bash
@@ -97,12 +97,12 @@ Close the terminal, open another one, and run
 ```bash
 noirup
 ```
-Clone this repository and change into the directory
+Clone this repository and change into the directory:
 ```bash
 https://github.com/ksmit323/zk_bootcamp_project.git
 cd zk_bootcamp_project
 ```
-Compile the program and from there you can genarate the proof and verify it
+Compile the program and from there you can genarate the proof and verify it:
 ```rust
 nargo compile
 nargo prove
